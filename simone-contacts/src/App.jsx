@@ -109,14 +109,14 @@ export default function App() {
             >
               <Phone
                 size={18}
-                className={`${iconBase} group-hover:text-[#ff] group-active:text-[#fff]`}
+                className={`${iconBase} group-hover:text-text group-active:text-text`}
               />
               <span>{contact.phone}</span>
             </a>
             <a href={`mailto:${contact.mail}`} className={linkBase}>
               <Mail
                 size={18}
-                className={`${iconBase} group-hover:text-[#fff] group-active:text-[#fff]`}
+                className={`${iconBase} group-hover:text-text group-active:text-text`}
               />
               <span className="break-all">{contact.mail}</span>
             </a>
@@ -126,7 +126,7 @@ export default function App() {
             >
               <MapPin
                 size={18}
-                className={`${iconBase} group-hover:text-[#fff] group-active:text-[#fff]`}
+                className={`${iconBase} group-hover:text-text group-active:text-text`}
               />
               <span className="break-all">{contact.location}</span>
             </a>
