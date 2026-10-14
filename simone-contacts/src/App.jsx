@@ -35,21 +35,30 @@ const contact = {
       username: "Simone Penza",
       url: "https://www.linkedin.com/in/simone-penza-604031388/",
       Icon: LinkedinIcon,
+      iconClass: "group-hover:text-[#0A66C2] group-active:text-[#0A66C2]",
     },
     {
       label: "GitHub",
       username: "simone-2006",
       url: "https://github.com/simone-2006",
       Icon: GithubIcon,
+      iconClass:
+        "group-hover:text-[#181717] group-active:text-[#181717] dark:group-hover:text-white dark:group-active:text-white",
     },
     {
       label: "Instagram",
       username: "simone.penzaa",
       url: "https://www.instagram.com/simone.penzaa/",
       Icon: InstagramIcon,
+      iconClass: "group-hover:text-[#E4405F] group-active:text-[#E4405F]",
     },
   ],
 };
+
+const linkBase =
+  "group flex min-h-11 items-center gap-2 rounded-xl p-2 text-base text-muted transition-colors hover:bg-secondary hover:text-text-secondary active:bg-secondary";
+
+const iconBase = "shrink-0 transition-colors";
 
 export default function App() {
   const [dark, setDark] = useState(() =>
@@ -96,39 +105,44 @@ export default function App() {
           <div className="flex flex-col gap-1">
             <a
               href={`tel:${contact.phone.replace(/\s+/g, "")}`}
-              className="flex min-h-11 items-center gap-2 text-base text-muted transition-colors hover:text-text-secondary hover:bg-secondary active:bg-secondary p-2 rounded-xl"
+              className={linkBase}
             >
-              <Phone size={18} className="shrink-0" />
+              <Phone
+                size={18}
+                className={`${iconBase} group-hover:text-[#ff] group-active:text-[#fff]`}
+              />
               <span>{contact.phone}</span>
             </a>
-            <a
-              href={`mailto:${contact.mail}`}
-              className="flex min-h-11 items-center gap-2 text-base text-muted transition-colors hover:text-text-secondary hover:bg-secondary active:bg-secondary p-2 rounded-xl"
-            >
-              <Mail size={18} className="shrink-0" />
+            <a href={`mailto:${contact.mail}`} className={linkBase}>
+              <Mail
+                size={18}
+                className={`${iconBase} group-hover:text-[#fff] group-active:text-[#fff]`}
+              />
               <span className="break-all">{contact.mail}</span>
             </a>
             <a
               href={`https://share.google/ZqjZKT5Dq7bGC1AyU`}
-              className="flex min-h-11 items-center gap-2 text-base text-muted transition-colors hover:text-text-secondary hover:bg-secondary active:bg-secondary p-2 rounded-xl"
+              className={linkBase}
             >
-              <MapPin size={18} className="shrink-0" />
+              <MapPin
+                size={18}
+                className={`${iconBase} group-hover:text-[#fff] group-active:text-[#fff]`}
+              />
               <span className="break-all">{contact.location}</span>
             </a>
-
           </div>
 
           <div className="mt-3 flex flex-col gap-1 border-t border-border-color pt-3">
-            {contact.social.map(({ label, username, url, Icon }) => (
+            {contact.social.map(({ label, username, url, Icon, iconClass }) => (
               <a
                 key={label}
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={label}
-                className="flex min-h-11 items-center gap-2 text-base text-muted transition-colors hover:text-text-secondary hover:bg-secondary active:bg-secondary p-2 rounded-xl"
+                className={linkBase}
               >
-                <Icon size={18} className="shrink-0" />
+                <Icon size={18} className={`${iconBase} ${iconClass}`} />
                 <span className="font-medium">{username}</span>
               </a>
             ))}
