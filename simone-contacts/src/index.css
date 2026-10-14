@@ -1,45 +1,155 @@
 @import "tailwindcss";
 
+:root {
+  --header-height: 3.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.page-gutter,
+.page-section {
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+}
+
+.page-section {
+  min-width: 0;
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+
+  .page-gutter,
+  .page-section {
+    padding-inline: 2.5rem;
+  }
+
+  .page-section {
+    padding-block: 4.5rem;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent-secondary);
+  outline-offset: 3px;
+}
+
+@keyframes boot-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.boot-caret {
+  animation: boot-caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee,
+  .boot-caret {
+    animation: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --animate-marquee: marquee 42s linear infinite;
+
+  --color-primary: #f9f9f6;
+  --color-secondary: #e3e2dc;
+  --color-highlight: #ece7dc;
+
+  --color-text: #222222;
+  --color-text-secondary: #23211e;
+  --color-muted: #5c5c5c;
+
+  --color-accent: #bfa181;
+  --color-accent-secondary: #8c7851;
+  --color-border-color: #e2e0d9;
+
+  --color-surface: #fffefb;
+  --color-overlay: rgba(35, 33, 30, 0.04);
+}
+
+@layer theme {
+  .dark {
     --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
     --font-serif: "Playfair Display", ui-serif, Georgia, serif;
     --animate-marquee: marquee 42s linear infinite;
 
-    --color-primary: #f9f9f6;
-    --color-secondary: #e3e2dc;
-    --color-highlight: #ece7dc;
+    --color-primary: #23211e;
+    --color-secondary: #2e2b25;
+    --color-highlight: #48443b;
 
-    --color-text: #222222;
-    --color-text-secondary: #23211e;
-    --color-muted: #5c5c5c;
+    --color-text: #f9f9f6;
+    --color-text-secondary: #ece7dc;
+    --color-muted: #b8b8b8;
 
     --color-accent: #bfa181;
     --color-accent-secondary: #8c7851;
-    --color-border-color: #e2e0d9;
+    --color-border-color: #39352e;
 
-    --color-surface: #fffefb;
-    --color-overlay: rgba(35, 33, 30, 0.04);
+    --color-surface: #282623;
+    --color-overlay: rgba(249, 249, 246, 0.04);
+  }
 }
 
-@layer theme {
-    .dark {
-        --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-        --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-        --animate-marquee: marquee 42s linear infinite;
 
-        --color-primary: #23211e;
-        --color-secondary: #2e2b25;
-        --color-highlight: #48443b;
+*::selection {
+  background-color: #9999996e;
+}
 
-        --color-text: #f9f9f6;
-        --color-text-secondary: #ece7dc;
-        --color-muted: #b8b8b8;
-
-        --color-accent: #bfa181;
-        --color-accent-secondary: #8c7851;
-        --color-border-color: #39352e;
-
-        --color-surface: #282623;
-        --color-overlay: rgba(249, 249, 246, 0.04);
-    }
+nav[aria-label="Primary"] {
+  padding-top: max(1rem, env(safe-area-inset-top));
 }
